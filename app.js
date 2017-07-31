@@ -1,61 +1,64 @@
-const Koa = require('koa')
-const Router = require('koa-router')
-const app = new Koa()
-const router = new Router()
+const Koa = require('koa');
+const app = new Koa();
+const router = require('koa-router')();
+const views = require('koa-views');
+const co = require('co');
+const convert = require('koa-convert');
+const json = require('koa-json');
+const onerror = require('koa-onerror');
+const bodyparser = require('koa-bodyparser')();
+const logger = require('koa-logger');
+const serve = require('koa-static');
+const favicon = require('koa-favicon');
 
-const views = require('koa-views')
-const co = require('co')
-const convert = require('koa-convert')
-const json = require('koa-json')
-const onerror = require('koa-onerror')
-const bodyparser = require('koa-bodyparser')
-const logger = require('koa-logger')
-const debug = require('debug')('koa2:server')
-const path = require('path')
-
-const config = require('./config')
-const routes = require('./routes')
-
-const port = process.env.PORT || config.port
-
-// error handler
-onerror(app)
+const index = require('./routes/index');
+const users = require('./routes/users');
+const admin = require('./routes/admin');
 
 // middlewares
-app.use(bodyparser())
-  .use(json())
-  .use(logger())
-  .use(require('koa-static')(__dirname + '/public'))
-  .use(views(path.join(__dirname, '/views'), {
-    options: {settings: {views: path.join(__dirname, 'views')}},
-    map: {'ejs': 'ejs'},
-    extension: 'ejs'
-  }))
-  .use(router.routes())
-  .use(router.allowedMethods())
+app.use(convert(bodyparser));
+app.use(convert(json()));
+app.use(convert(logger()));
+app.use(convert(serve(__dirname + '/public')));
+app.use(favicon(__dirname + '/public/favicon.ico'));
+
+
+// 一般使用的模板是 EJS
+// app.use(views(__dirname + '/views', {
+//   extension: 'jade'
+// }));
+
+app.use(views(__dirname + '/views', {
+  extension: 'ejs'
+}));
+
 
 // logger
 app.use(async (ctx, next) => {
-  const start = new Date()
-  await next()
-  const ms = new Date() - start
-  console.log(`${ctx.method} ${ctx.url} - $ms`)
-})
+  const start = new Date();
+  await next();
+  const ms = new Date() - start;
+  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+});
 
-router.get('/', async (ctx, next) => {
-  // ctx.body = 'Hello World'
-  ctx.state = {
-    title: 'Koa2'
-  }
-  await ctx.render('index', ctx.state)
-})
+// 簡易的 MVC 架構
+router.use('/', index.routes(), index.allowedMethods());
+router.use('/users', users.routes(), users.allowedMethods());
+router.use('/admin', admin.routes(), users.allowedMethods());
 
-routes(router)
-app.on('error', function(err, ctx) {
+app.use(router.routes(), router.allowedMethods());
+// response
+
+app.on('error', function(err, ctx){
   console.log(err)
-  logger.error('server error', err, ctx)
+  log.error('server error', err, ctx);
+});
+
+app.use(async(ctx) => {
+  if (ctx.status === 404) {
+    await ctx.render('./error/404');
+  }
 })
 
-module.exports = app.listen(config.port, () => {
-  console.log(`Listening on http://localhost:${config.port}`)
-})
+
+module.exports = app;
