@@ -1,4 +1,6 @@
-# Ubuntu 14.04 
+# Koa2 Demo
+
+這是 ubuntu 14.04 的安裝方式
 
 ## 先安裝 nvm  
 這個是安裝 node.js 的利器，複製就可以了
@@ -28,7 +30,8 @@ npm install -g yo ( 選用 )
 ```
 npm install -g koa2-generator
 
-koa2 --view ejs ./app && cd ./app ( 這裡只選用 EJS 樣板 )
+koa2 --view hogan ./app && cd ./app 
+( 其實這裡選擇 ejs 樣板，不過卻 ejs 的配置有點奇怪，而改為 hjs，之後再改回來 )
 
 yarn install ( 第一次跑 )
 ```
