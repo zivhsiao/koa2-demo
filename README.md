@@ -109,5 +109,21 @@ pm2 start/stop/restart run.js -i 2
 
 
 ```
-yarn start
+
+nodemon bin/run.js ( 開發使用 )
+
+or
+
+pm2 run bin/run.js ( 正式上線 ) 
 ```
+
+-
+
+# 後台的畫面
+
+這比較花時間在處理登入的事情
+
+
+# 前台的畫面
+
+稍等一下下...

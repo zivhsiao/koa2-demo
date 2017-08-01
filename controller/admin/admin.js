@@ -29,3 +29,14 @@ exports.getUsers = async (ctx) => {
     data: adminInfo
   });
 };
+
+exports.getUsersByOne = async (ctx) => {
+  var bodyData = ctx.body;
+
+  const admin = await Admin.findAll({});
+
+  await ctx.render('admin/users', {
+    data: admin
+  });
+};
+
