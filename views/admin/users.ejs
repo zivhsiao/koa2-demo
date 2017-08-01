@@ -1,73 +1,75 @@
 <% include header %>
-        <!-- Main content -->
-        <main class="main">
-            <!-- Breadcrumb -->
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">ADMIN</li>
-                <li class="breadcrumb-item active">使用者</li>
-                
-            </ol>
-            <div class="container-fluid">
-                <div class="animated fadeIn">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    使用者資料 
-                                    <div class="text-right" style="float: right">
-                                        <button type="button" class="btn btn-primary text-right">新 增</button>    
-                                            
-                                    </div>
-                                        
-                                    
-                                    
-                                </div>
-                                <div class="card-block">
-                                    <table class="table table-striped">
-                                        <% if (data.length > 0) {%>
-                                        <thead>
-                                            <tr>
-                                                <th>帳 號</th>
-                                                <th>E-mail</th>
-                                                <th>管理者權限</th>
-                                                
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <% data.forEach(function(datas){ %>
-                                                <tr>
-                                                    <td><%= datas['account'] %></td>
-                                                    <td><%= datas['email'] %></td>
-                                                    <td><% if(datas['admin'] == 1)  { %>是<% } else { %>否<% } %></td>
-                                                </tr>
-                                            <% }); %>
-                                        </tbody>
-                                        <% } else {%>
-                                            <thead>
-                                                <tr>
-                                                    <td>No Data</td>
-                                                </tr>    
-                                            </thead>    
-                                        <% }%>
-                                    </table>
-                                    <div class="text-center">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                                        <li class="page-item active">
-                                            <a class="page-link" href="#">1</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>                
-        
-<% include footer %>
-    
+<!-- Main content -->
+<main class="main">
+  <!-- Breadcrumb -->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">ADMIN</li>
+    <li class="breadcrumb-item active">使用者</li>
+
+  </ol>
+  <div class="container-fluid">
+    <div class="animated fadeIn">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-header">
+              使用者資料
+              <div class="text-right" style="float: right">
+                <button type="button" class="btn btn-primary text-right">新 增</button>
+              </div>
+            </div>
+            <div class="card-block">
+              <table class="table table-striped">
+                <% if (data.length > 0) { %>
+                <thead>
+                <tr>
+                  <th>帳 號</th>
+                  <th>E-mail</th>
+                  <th>管理者權限</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <% data.forEach(function(datas){ %>
+                <tr>
+                  <td><%= datas['account'] %></td>
+                  <td><%= datas['email'] %></td>
+                  <td>
+                    <% if(datas['admin'] == 1)  { %>
+                    是
+                    <% } else { %>
+                    否
+                    <% } %>
+                  </td>
+                </tr>
+                <% }); %>
+                </tbody>
+                <% } else { %>
+                <thead>
+                <tr>
+                  <td>No Data</td>
+                </tr>
+                </thead>
+                <% } %>
+              </table>
+              <div class="text-center">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% include footer %>
+

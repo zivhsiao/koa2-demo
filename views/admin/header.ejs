@@ -1,93 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="Admin">
-        <meta name="author" content="Lukasz Holeczek">
-        <meta name="keyword" content="Admin">
-        <!-- <link rel="shortcut icon" href="/ico/favicon.png"> -->
-        <title>Admin</title>
-        <!-- Icons -->
-        <link href="/css/font-awesome.min.css" rel="stylesheet">
-        <link href="/css/simple-line-icons.css" rel="stylesheet">
-        <!-- Main styles for this application -->
-        <link href="/css/style.css" rel="stylesheet">
-        <link href="/css/style_custom.css" rel="stylesheet">
-        
-    </head>
-    <body class="navbar-fixed sidebar-nav fixed-nav">
-        <header class="navbar">
-            <div class="container-fluid">
-                <button class="navbar-toggler mobile-toggler hidden-lg-up" type="button">&#9776;</button>
-                <a class="navbar-brand" href="#"></a>
-                <ul class="nav navbar-nav hidden-md-down">
-                    <li class="nav-item">
-                        <a class="nav-link navbar-toggler layout-toggler" href="#">&#9776;</a>
-                    </li>
-                    
-                </ul>
-                <ul class="nav navbar-nav pull-right hidden-md-down">
-                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            
-                            <span class="hidden-md-down">ADMIN</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            
-                            <div class="dropdown-header text-xs-center">
-                                <strong>Settings</strong>
-                            </div>
-                            <a class="dropdown-item" href="/admin/profile"><i class="fa fa-user"></i> Profile</a>
-                            <!--<a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Settings</a>-->
-                            <a class="dropdown-item" href="/"><i class="fa fa-lock"></i> Logout</a>
-                        </div>
-                    </li>
-                    <li class="nav-item"></li>
-                </ul>
-                
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="JenFu Developer">
+
+  <title>Admin</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="/css/bs3/sticky-footer.css">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/sb-admin-2.css" rel="stylesheet">
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="/js/tether.min.js"></script>
+  <script src="/js/metisMenu.min.js"></script>
+  <script src="/js/raphael.min.js"></script>
+  <script src="/js/morris.min.js"></script>
+  <script src="/js/morris-data.js"></script>
+
+  <!-- Custom Theme JavaScript -->
+  <script src="/js/sb-admin-2.js"></script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <ul class="nav navbar-top-links navbar-right">
+
+      <!-- /.dropdown -->
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+           <i class="fa fa-user fa-fw"></i> ADMIN <i class="fa fa-caret-down"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-user">
+
+          <li><a href="/admin/logout"><i class="fa fa-sign-out fa-fw"></i> 登 出</a>
+          </li>
+        </ul>
+        <!-- /.dropdown-user -->
+      </li>
+      <!-- /.dropdown -->
+    </ul>
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+      <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+          <li class="sidebar-search">
+            <div class="input-group custom-search-form">
+              <input type="text" class="form-control" placeholder="Search...">
+              <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
             </div>
-        </header>
-        <div class="sidebar">
-            <nav class="sidebar-nav">
-                <ul class="nav">
-                    <li class="nav-title">
-                        管理界面
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/category">
-                            <i class="fa fa-user"></i> 商品類別 
-                        <!--<span class="tag tag-info">NEW</span>-->
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/products">
-                            <i class="fa fa-user"></i> 商品資料 
-                        <!--<span class="tag tag-info">NEW</span>-->
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/users">
-                            <i class="fa fa-user"></i> 使用者 
-                        <!--<span class="tag tag-info">NEW</span>-->
-                        </a>
-                    </li>
-                    
-                    
-                    <li class="divider"></li>
-                    <!--<li class="nav-title">-->
-                        
-                    <!--</li>-->
-                    <!--<li class="nav-item nav-dropdown">-->
-                    <!--    <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-star"></i> Pages</a>-->
-                    <!--    <ul class="nav-dropdown-items">-->
-                    <!--        <li class="nav-item">-->
-                    <!--            <a class="nav-link" href="pages-login.html" target="_top"><i class="icon-star"></i> Login</a>-->
-                    <!--        </li>-->
-                    <!--    </ul>-->
-                    <!--</li>-->
+            <!-- /input-group -->
+          </li>
+          <li>
+            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+              <li>
+                <a href="flot.html">Flot Charts</a>
+              </li>
+              <li>
+                <a href="morris.html">Morris.js Charts</a>
+              </li>
+            </ul>
+            <!-- /.nav-second-level -->
+          </li>
+          <li>
+            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+          </li>
+          <li>
+            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+              <li>
+                <a href="panels-wells.html">Panels and Wells</a>
+              </li>
+              <li>
+                <a href="buttons.html">Buttons</a>
+              </li>
+              <li>
+                <a href="notifications.html">Notifications</a>
+              </li>
+              <li>
+                <a href="typography.html">Typography</a>
+              </li>
+              <li>
+                <a href="icons.html"> Icons</a>
+              </li>
+              <li>
+                <a href="grid.html">Grid</a>
+              </li>
+            </ul>
+            <!-- /.nav-second-level -->
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+            <ul class="nav nav-second-level">
+              <li>
+                <a href="#">Second Level Item</a>
+              </li>
+              <li>
+                <a href="#">Second Level Item</a>
+              </li>
+              <li>
+                <a href="#">Third Level <span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                  <li>
+                    <a href="#">Third Level Item</a>
+                  </li>
+                  <li>
+                    <a href="#">Third Level Item</a>
+                  </li>
+                  <li>
+                    <a href="#">Third Level Item</a>
+                  </li>
+                  <li>
+                    <a href="#">Third Level Item</a>
+                  </li>
                 </ul>
-            </nav>
-        </div>
+                <!-- /.nav-third-level -->
+              </li>
+            </ul>
+            <!-- /.nav-second-level -->
+          </li>
+
+        </ul>
+      </div>
+      <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+  </nav>

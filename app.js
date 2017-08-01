@@ -1,3 +1,5 @@
+process.env.TZ = 'Asia/Taipei'
+
 const Koa = require('koa');
 const app = new Koa();
 const router = require('koa-router')();
@@ -14,6 +16,7 @@ const favicon = require('koa-favicon');
 const index = require('./routes/index');
 const users = require('./routes/users');
 const admin = require('./routes/admin');
+
 
 // middlewares
 app.use(convert(bodyparser));

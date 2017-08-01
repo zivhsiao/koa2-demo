@@ -25,7 +25,7 @@ npm install -g yo ( 選用 )
 
 ## koa2-generator
 
-這是一定要的套件，-g 代表是
+這是一定要的套件，-g 代表是全域
 
 ```
 npm install -g koa2-generator
@@ -34,6 +34,17 @@ koa2 --view hogan ./app && cd ./app
 ( 其實這裡選擇 ejs 樣板，不過卻 ejs 的配置有點奇怪，而改為 hjs，之後再改回來 )
 
 yarn install ( 第一次跑 )
+```
+
+## 記得要在 app.js 的開頭加入的是時區
+
+``` 
+ process.env.TZ = 'Asia/Taipei'，這樣才會 +8:00
+
+ 然後安裝 dateformat
+ 
+ yarn add dateformat
+
 ```
 
 ## yarn 增加支援 mariaDB 的套件
