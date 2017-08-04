@@ -78,6 +78,37 @@ sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://ftp.ubuntu-tw.org/
 sudo apt-get update
 
 sudo apt-get install mariadb-server
+
+```
+
+## SESSION 要的方式，安裝 redis
+
+koa2 對 session 並沒有原生的支援
+
+所以要安裝其他的套件來使 koa2 可以讓 session 跑的正常  
+
+Unbutu 14.04 安裝 redis
+
+```
+sudo add-apt-repository ppa:chris-lea/redis-server
+
+sudo apt-get update
+
+sudo apt-get install redis-server
+
+測試是否已經安裝成功
+
+redis-benchmark -q -n 1000 -c 10 -P 5
+
+```
+
+安裝好了之後。順便安裝套件,koa-redis
+
+```
+yarn add koa-generic-session
+
+yarn add koa-redis
+
 ```
 
 ## 安裝 nodemon，pm2 
@@ -117,11 +148,18 @@ or
 pm2 run bin/run.js ( 正式上線 ) 
 ```
 
----
+-
 
 # 後台的畫面
 
 這比較花時間在處理登入的事情
+
+這裡採用的部分 
+
+Bootstrap 3，而捨去 4，因為他還在改版
+
+jQuert 3.1.1
+ 
 
 
 # 前台的畫面

@@ -1,7 +1,4 @@
-process.env.TZ = 'Asia/Taipei'
-
 const Koa = require('koa');
-const app = new Koa();
 const router = require('koa-router')();
 const views = require('koa-views');
 const co = require('co');
@@ -12,19 +9,35 @@ const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
 const serve = require('koa-static');
 const favicon = require('koa-favicon');
+const session = require('koa-generic-session');
+const redisStore = require('koa-redis');
+const sequelize = require("./models/sequelize.js")
 
+const config = require('./config/config');
+
+const app = new Koa();
 const index = require('./routes/index');
 const users = require('./routes/users');
 const admin = require('./routes/admin');
 
+global.Promise = require('bluebird');
 
+app.keys = ['hezrid56610']
 // middlewares
 app.use(convert(bodyparser));
 app.use(convert(json()));
 app.use(convert(logger()));
 app.use(convert(serve(__dirname + '/public')));
 app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(convert(session({
+  store: redisStore(config.redis)
+})));
 
+
+app.use(async(ctx, next) => {
+  await next()
+  ctx.set('X-Powered-By', 'Koa2')
+})
 
 // 一般使用的模板是 EJS
 // app.use(views(__dirname + '/views', {
@@ -34,7 +47,6 @@ app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(views(__dirname + '/views', {
   extension: 'ejs'
 }));
-
 
 // logger
 app.use(async (ctx, next) => {
@@ -50,7 +62,7 @@ router.use('/users', users.routes(), users.allowedMethods());
 router.use('/admin', admin.routes(), users.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
-// response
+
 
 app.on('error', function(err, ctx){
   console.log(err)
@@ -63,5 +75,4 @@ app.use(async(ctx) => {
   }
 })
 
-
-module.exports = app;
+module.exports = app;'use strict';
