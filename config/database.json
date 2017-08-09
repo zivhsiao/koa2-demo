@@ -4,7 +4,7 @@
   "port": 3306,
   "userName": "root",
   "password": "hezrid5",
-  "databaseName": "koa2Demo",
+  "databaseName": "koa2Store",
   "ssl": false,
   "timezone": "+08:00"
 }

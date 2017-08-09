@@ -4,22 +4,22 @@ const Sequelize = require('sequelize')
 
 const Users = sequelize.define('users', {
     fullname: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(255),
       allowNull: false
     },
     email: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(255),
       allowNull: false,
       unique: true
     },
     password: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(255),
       allowNull: false
     },
     admin: {
-        type: Sequelize.INTEGER,
-        defaultValue: 0,
-        allowNull: false
+      type: Sequelize.INTEGER(11),
+      allowNull: false,
+      defaultValue: '0'
     }
   }
 );

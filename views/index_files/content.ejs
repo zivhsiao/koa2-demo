@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.datatables.net/plug-ins/1.10.15/i18n/Chinese-traditional.json"></script>
+
+<table id="contentTable" class="display" cellspacing="0" width="100^">
+  <thead>
+    <tr>
+      <th>標題</th>
+      <th>建立日期</th>
+
+    </tr>
+  </thead>
+
+</table>
+
+<script>
+$(function () {
+  $('#contentTable').DataTable({
+    "ajax": "/api/news",
+    "language":{
+      "url": "/i18n/Chinese-traditional.json"
+    },
+    "columns": [
+
+      { "data": "title" },
+
+      { "data": "start_date" },
+
+    ]
+  });
+})
+</script>

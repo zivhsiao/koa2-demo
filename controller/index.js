@@ -8,8 +8,25 @@ const Menu_Carouse = require('../models/menu_carouse.js')
 const Menu_Footer = require('../models/menu_footer.js')
 const Menu_Config = require('../models/menu_config.js')
 
+exports.getMenu = async(ctx) => {
 
-exports.getIndex = async(ctx) => {
+  const topMenu = await MenuMain.findAll({
+    where: {
+      area: 'top',
+      enabled: 1
+    }
+  })
+
+
+  await ctx.render('index', {
+    title: 'Koa2',
+    admin: ctx.session.name,
+    topMenu: topMenu
+  });
+}
+
+
+exports.getMenuAll = async(ctx) => {
 
   const topMenu = await MenuMain.findAll({
     where: {

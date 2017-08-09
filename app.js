@@ -11,14 +11,14 @@ const serve = require('koa-static');
 const favicon = require('koa-favicon');
 const session = require('koa-generic-session');
 const redisStore = require('koa-redis');
-const sequelize = require("./models/sequelize.js")
 
 const config = require('./config/config');
 
 const app = new Koa();
 const index = require('./routes/index');
-const users = require('./routes/users');
 const admin = require('./routes/admin');
+const menu = require('./routes/menu');
+const api = require('./routes/api');
 
 global.Promise = require('bluebird');
 
@@ -58,8 +58,9 @@ app.use(async (ctx, next) => {
 
 // 簡易的 MVC 架構
 router.use('/', index.routes(), index.allowedMethods());
-router.use('/users', users.routes(), users.allowedMethods());
-router.use('/admin', admin.routes(), users.allowedMethods());
+router.use('/menu', menu.routes(), menu.allowedMethods());
+router.use('/admin', admin.routes(), admin.allowedMethods());
+router.use('/api', api.routes(), api.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 

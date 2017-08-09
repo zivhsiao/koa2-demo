@@ -2,34 +2,27 @@
 const sequelize = require("./sequelize.js")
 const Sequelize = require('sequelize')
 
-const Footer = sequelize.define('footer', {
-    title: {
+const menu_config = sequelize.define('menu_config', {
+    area: {
       type: Sequelize.STRING,
       allowNull: false
     },
-    address: {
-      type: Sequelize.STRING,
-      allowNull: true,
-    },
-    tel: {
+    main_class: {
       type: Sequelize.STRING,
       allowNull: true
     },
-    fax: {
+    sub_class: {
       type: Sequelize.STRING,
       allowNull: true
     },
-    service_email: {
-      type: Sequelize.STRING,
-      allowNull: true
-    },
-    visible: {
+    enabled: {
       type: Sequelize.INTEGER(1),
-      defaultValue: 1
+      allowNull: false,
+      defaultValue: '1'
     }
   }
 );
 
-Footer.sync();
+menu_config.sync();
 
-module.exports = Footer;
+module.exports = menu_config;
